@@ -1,0 +1,41 @@
+samples: "config/samples_breast_cancer_corrected.tsv" # .tsv file containing sample names and locations
+regions: "config/regions_GTRD_10000_v20.tsv" # .tsv file containing bed files with regions of interest
+
+
+### params
+minRL: 120 # minimum read length for calculating WPS
+maxRL: 180 # maximum read length for calculating WPS
+win_len: 165 #Savitzky-Golay filter window length (length of the filter window i.e. the number of coefficients)
+poly: 3 #Savitzky-Golay filter polyorder (order of the polynomial used to fit the samples)
+
+
+### genome build specific options ##
+GRCh37:
+  genome: "resources/genome/hg19.fa.genome" #full .genome file
+  genome_autosomes: "resources/genome/hg19.fa.genome.regular_autosomes" # .genome file reduced to regular autosomes
+  universal_blacklist: "resources/blacklists/universal_blacklist.hg19.bed" # UCSC_gap + ENCODE blacklist combined file in .bed format
+  #2bit_ref: 
+
+GRCh38:
+  genome: "resources/genome/hg38.fa.genome" #full .genome file
+  genome_autosomes: "resources/genome/hg38.fa.genome.regular_autosomes" #.genome file reduced to regular autosome
+  universal_blacklist: "resources/blacklists/universal_blacklist.hg38.bed" # UCSC_gap + ENCODE blacklist combined file in .bed format
+  #2bit_ref: "resources/hg38.2bit"
+
+
+
+### scores
+plotting:
+  overlay_mode: "mean" # can be either mean, median, or confidence
+  smoothing: True # bool; apply Savitzky-Golay filter or not
+  rolling: False # bool; smooth by substracting the rolling median
+  background_norm: False # bool, normalize with random background or not
+  edge_norm: False # bool, normalize with the mean of both outer 100 bp 
+
+
+### features
+features:
+  mean_coverage: True
+  central_coverage: True
+  amplitude: True
+  nucleosome_spacing: True

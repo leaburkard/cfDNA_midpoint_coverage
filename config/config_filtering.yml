@@ -1,0 +1,6 @@
+
+### TFBS
+file: "resources/TFBS_download/Homo_sapiens_meta_clusters_v20.interval.gz" # name and path of the GTRD download file
+version: "v20" # can be either "v19" or "v20"
+number_of_sites: 30000 # number of sites that should be filtered from each TF
+valid_sites: "resources/CIS_BP_TF_Information.txt" # name and path of file containing the valid TFs

@@ -1,0 +1,9 @@
+name: GC_correction
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - pybigwig
+  - pip
+  - pip:
+    - git+https://github.com/sroener/deepTools.git
