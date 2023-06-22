@@ -1,2 +1,3 @@
 ID	sample	path	ref_samples	genome_build	weights
-DELFI_test	h_41	/fast/work/groups/ag_kircher/cfDNA-analysis/sebastian/develop/cfDNA_preprocessing_workflow/results/PEtest/mapped_reads/EGAF00002727606_processed.hg38.bam	h_41	GRCh38	 
+experimentID	testsample1	/path/to/testsample1.bam	testsample2	GRCh38	-g
+experimentID	testsample2	/path/to/testsample1.bam	testsample1	GRCh38	-g

@@ -1,5 +1,5 @@
-samples: "config/samples_breast_cancer_corrected.tsv" # .tsv file containing sample names and locations
-regions: "config/regions_GTRD_10000_v20.tsv" # .tsv file containing bed files with regions of interest
+samples: "config/samples.tsv" # .tsv file containing sample names and locations
+regions: "config/regions.tsv" # .tsv file containing bed files with regions of interest
 
 
 ### params
@@ -14,14 +14,11 @@ GRCh37:
   genome: "resources/genome/hg19.fa.genome" #full .genome file
   genome_autosomes: "resources/genome/hg19.fa.genome.regular_autosomes" # .genome file reduced to regular autosomes
   universal_blacklist: "resources/blacklists/universal_blacklist.hg19.bed" # UCSC_gap + ENCODE blacklist combined file in .bed format
-  #2bit_ref: 
 
 GRCh38:
   genome: "resources/genome/hg38.fa.genome" #full .genome file
   genome_autosomes: "resources/genome/hg38.fa.genome.regular_autosomes" #.genome file reduced to regular autosome
   universal_blacklist: "resources/blacklists/universal_blacklist.hg38.bed" # UCSC_gap + ENCODE blacklist combined file in .bed format
-  #2bit_ref: "resources/hg38.2bit"
-
 
 
 ### scores

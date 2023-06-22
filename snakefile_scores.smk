@@ -16,8 +16,6 @@ regions = pd.read_csv(config["regions"], sep="\t").set_index("target", drop=Fals
 regions.index.names = ["region_id"]
 validate(regions, schema="workflow/schemas/regions.schema.yaml")
 
-# score_names=["MIDPOINT","WPS","COV"]
-
 def get_WPS_ref(sample):
     ref_samples = samples["ref_samples"][sample].split(",")
     genomes = samples["genome_build"][ref_samples].values.tolist()
@@ -306,10 +304,7 @@ rule plot_overlays:
         MP_back=lambda wc: "results/intermediate/{{ID}}/table/{GENOME}/background/{{target_region}}--{{SAMPLE}}_MIDPOINT.background.csv.gz".format(GENOME=samples["genome_build"].loc[samples["sample"] == wc.SAMPLE].values[0]),
         MP_back_ref=lambda wildcards: get_MP_background_ref(wildcards.SAMPLE),
     output:
-        "results/plots/overlays/{ID}/{target_region}--{SAMPLE}_overlays.pdf",
-        #features_WPS=temp("results/features/{ID}/{target_region}--{SAMPLE}_WPS_features.tsv"),
-        #features_COV=temp("results/features/{ID}/{target_region}--{SAMPLE}_COV_features.tsv"),
-        #features_MP=temp("results/features/{ID}/{target_region}--{SAMPLE}_MIDPOINT_features.tsv")
+        "results/plots/overlays/{ID}/{target_region}--{SAMPLE}_overlays.pdf"
     params:
         target="{target_region}",
         sample="{SAMPLE}",
@@ -328,43 +323,3 @@ rule plot_overlays:
         "workflow/envs/overlays.yml"
     script:
         "workflow/scripts/scores/overlays.py"
-
-
-# rule feature_extraction: #do for MP,WPS,COV
-#     input: #input funktioniert so noch nicht
-#         #"results/intermediate/{ID}/table/{GENOME}/target/{PREFIX}_MIDPOINT.csv.gz"#, ID=samples["ID"], GENOME=samples["genome_build"])
-#         score="results/intermediate/{ID}/table/{GENOME}/target/{target_region}--{SAMPLE}_MIDPOINT.csv.gz",
-#         #score_back=lambda wc: "results/intermediate/{{ID}}/table/{GENOME}/background/{{target_region}}--{{SAMPLE}}_MIDPOINT.background.csv.gz".format(GENOME=samples["genome_build"].loc[samples["sample"] == wc.SAMPLE].values[0]),
-#     output:
-#         "results/features/{ID}/MIDPOINT_features.tsv",
-#     params:
-#         target="{target_region}",
-#         sample="{SAMPLE}",
-#         #ref_IDs=lambda wildcards: samples["ref_samples"][wildcards.SAMPLE].split(","),
-#         ID=samples["ID"],
-#         GENOME=samples["genome_build"],
-#         overlay_mode = config["plotting"]["overlay_mode"],
-#         smoothing = config["plotting"]["smoothing"],
-#         rolling = config["plotting"]["rolling"],
-#         background_norm = config["plotting"]["background_norm"],
-#         edge_norm = config["plotting"]["edge_norm"],
-#         win_len=config["win_len"],
-#         poly=config["poly"],
-#         mean_coverage=config["features"]["mean_coverage"],
-#         central_coverage=config["features"]["central_coverage"],
-#         amplitude=config["features"]["amplitude"]
-#         #score_name="{SCORE}"
-#     conda:
-#         "workflow/envs/overlays.yml"
-#     script:
-#         "workflow/scripts/scores/feature_extraction.py"
-
-
-# rule feature_extraction:
-#    input:
-#         WPS
-#         COV
-#         MP
-#    output:
-#    params:
-#    script:
